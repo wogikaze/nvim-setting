@@ -1,5 +1,3 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- AstroCore provides a central place to modify mappings, vim options, autocommands, and more!
 -- Configuration documentation can be found with `:h astrocore`
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
@@ -32,6 +30,20 @@ return {
         spell = false, -- sets vim.opt.spell
         signcolumn = "yes", -- sets vim.opt.signcolumn to yes
         wrap = false, -- sets vim.opt.wrap
+        tabstop = 4,
+        shiftwidth = 4,
+        expandtab = true,
+        -- カーソル位置を見やすくする
+        cursorline = true,
+        -- モダンな配色を可能にする, 24bits color
+        termguicolors = true,
+        -- OSのクリップボードと連携
+        clipboard = "unnamedplus",
+        -- 文字化けを防ぐ
+        encoding = "utf-8",
+        fileencoding = "utf-8",
+        -- 作業中のファイルを保護しない（git等で管理することを前提）
+        swapfile = false,
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
@@ -59,6 +71,8 @@ return {
           end,
           desc = "Close buffer from tabline",
         },
+        -- Windowsのクリップボードに保存する
+        ["<C-c>"] = { '"+y', desc = "Copy to clipboard" },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
@@ -66,6 +80,13 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
+
+        -- vscode のように<C-@>でターミナル
+        ["<C-@>"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
+      },
+      v = {
+        -- Windowsのクリップボードに保存する
+        ["<C-c>"] = { '"+y', desc = "Copy to clipboard" },
       },
     },
   },
