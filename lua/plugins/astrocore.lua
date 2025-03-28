@@ -82,14 +82,14 @@ return {
         -- ["<C-S>"] = false,
 
         -- ターミナル
-        ["<C-i>"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
+        ["<Leader>@"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
       },
       v = {
         -- Windowsのクリップボードに保存する
         ["<C-c>"] = { '"+y', desc = "Copy to clipboard" },
       },
       t = {
-        ["<C-i>"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
+        ["<Leader>@"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
       },
     },
   },
