@@ -177,4 +177,39 @@ return {
     },
   },
   { "petertriho/nvim-scrollbar", config = function() require("scrollbar").setup() end },
+  {
+    "monaqa/dial.nvim",
+    keys = {
+      { "<C-a>", "<Plug>(dial-increment)", mode = { "n", "v" } },
+      { "<C-x>", "<Plug>(dial-decrement)", mode = { "n", "v" } },
+      { "g<C-a>", "g<Plug>(dial-increment)", mode = { "n", "v" } },
+      { "g<C-x>", "g<Plug>(dial-decrement)", mode = { "n", "v" } },
+    },
+    config = function()
+      local augend = require "dial.augend"
+      require("dial.config").augends:register_group {
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.constant.new {
+            elements = { "true", "false" },
+            word = true,
+            cyclic = true,
+          },
+          augend.constant.new {
+            elements = { "&&", "||" },
+            word = false,
+            cyclic = true,
+          },
+          augend.integer.alias.decimal_int,
+        },
+        mygroup = {
+          augend.integer.alias.decimal,
+          augend.constant.alias.bool,
+          augend.date.alias["%m/%d/%Y"],
+        },
+      }
+    end,
+  },
 }
