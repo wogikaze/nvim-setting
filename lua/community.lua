@@ -7,6 +7,7 @@ return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.python" }
+  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity/keybinding" },
   -- import/override with your plugins folder
 }
