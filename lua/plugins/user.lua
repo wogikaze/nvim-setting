@@ -103,7 +103,7 @@ return {
         condition = function(buf)
           local fn = vim.fn
           local utils = require "auto-save.utils.data"
-  
+
           if
             fn.getbufvar(buf, "&modifiable") == 1
             and utils.not_in(fn.getbufvar(buf, "&filetype"), { "neo-tree", "lua.plugin", "terminal" })
@@ -129,29 +129,27 @@ return {
     end,
   },
   {
-    {
-      "EtiamNullam/deferred-clipboard.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("deferred-clipboard").setup {
-          fallback = "unnamedplus",
-          lazy = true,
-        }
-  
-        vim.g.clipboard = {
-          name = "clip",
-          copy = {
-            ["+"] = "win32yank.exe -i --crlf",
-            ["*"] = "win32yank.exe -i --crlf",
-          },
-          paste = {
-            ["+"] = "win32yank.exe -o --lf",
-            ["*"] = "win32yank.exe -o --lf",
-          },
-          cache_enable = 0, -- Disable clipboard caching
-        }
-      end,
-    },
+    "EtiamNullam/deferred-clipboard.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("deferred-clipboard").setup {
+        fallback = "unnamedplus",
+        lazy = true,
+      }
+
+      vim.g.clipboard = {
+        name = "clip",
+        copy = {
+          ["+"] = "win32yank.exe -i --crlf",
+          ["*"] = "win32yank.exe -i --crlf",
+        },
+        paste = {
+          ["+"] = "win32yank.exe -o --lf",
+          ["*"] = "win32yank.exe -o --lf",
+        },
+        cache_enable = 0, -- Disable clipboard caching
+      }
+    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -177,5 +175,6 @@ return {
         },
       },
     },
-  }
+  },
+  { "petertriho/nvim-scrollbar", config = function() require("scrollbar").setup() end },
 }
