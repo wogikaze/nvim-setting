@@ -86,4 +86,96 @@ return {
   {
     "keaising/im-select.nvim",
   },
+  {
+    "pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
+        enabled = true,
+        trigger_events = {
+          "InsertLeave",
+          "TextChanged",
+          "TextChangedI",
+          "TextChangedP",
+          "CursorMoved",
+          "CursorMovedI",
+        },
+        debounce_delay = 50,
+        condition = function(buf)
+          local fn = vim.fn
+          local utils = require "auto-save.utils.data"
+  
+          if
+            fn.getbufvar(buf, "&modifiable") == 1
+            and utils.not_in(fn.getbufvar(buf, "&filetype"), { "neo-tree", "lua.plugin", "terminal" })
+          then
+            return true
+          end
+          return false
+        end,
+        execution_message = {
+          message = function() return ("AutoSave: saved at " .. vim.fn.strftime "%H:%M:%S") end,
+          dim = 0.18,
+          cleaning_interval = 1250,
+        },
+        write_all_buffers = false,
+        callbacks = {
+          enabling = nil,
+          disabling = nil,
+          before_asserting_save = nil,
+          before_saving = nil,
+          after_saving = nil,
+        },
+      }
+    end,
+  },
+  {
+    {
+      "EtiamNullam/deferred-clipboard.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("deferred-clipboard").setup {
+          fallback = "unnamedplus",
+          lazy = true,
+        }
+  
+        vim.g.clipboard = {
+          name = "clip",
+          copy = {
+            ["+"] = "win32yank.exe -i --crlf",
+            ["*"] = "win32yank.exe -i --crlf",
+          },
+          paste = {
+            ["+"] = "win32yank.exe -o --lf",
+            ["*"] = "win32yank.exe -o --lf",
+          },
+          cache_enable = 0, -- Disable clipboard caching
+        }
+      end,
+    },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        follow_current_file = { enabled = true },
+        hijack_netrw_behavior = "open_current",
+        use_libuv_file_watcher = true,
+        filtered_items = {
+          visible = false, -- デフォルトで隠されているかどうか
+          show_hidden_count = true,
+          hide_dotfiles = false, -- dotfileを隠すかどうか
+          hide_gitignored = false, -- gitignoreされているファイルを隠すかどうか
+          hide_by_name = {
+            "node_modules",
+            "thumbs.db",
+          },
+          never_show = {
+            ".git",
+            ".DS_Store",
+            ".history",
+          },
+        },
+      },
+    },
+  }
 }
