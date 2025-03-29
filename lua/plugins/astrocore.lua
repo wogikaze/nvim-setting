@@ -89,7 +89,7 @@ return {
         ["<C-c>"] = { '"+y', desc = "Copy to clipboard" },
       },
       t = {
-        ["<Leader>@"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
+        -- ["<Leader>@"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "Toggle floating terminal" },
       },
     },
   },

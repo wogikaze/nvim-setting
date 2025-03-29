@@ -212,4 +212,34 @@ return {
       }
     end,
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+      require("tiny-inline-diagnostic").setup()
+      vim.diagnostic.config { virtual_text = false, break_line = { enabled = true } } -- Only if needed in your configuration, if you already have native LSP diagnostics
+    end,
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+          duration = 0,
+          delay = 0,
+          style = { { fg = "#806d9c" } },
+        },
+        indent = {
+          enable = true,
+          style = { "#888888" },
+        },
+      }
+    end,
+  },
 }

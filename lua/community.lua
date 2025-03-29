@@ -8,7 +8,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.python" },
-  { import = "astrocommunity.keybinding" },
+  -- { import = "astrocommunity.keybinding" },
   { import = "astrocommunity.colorscheme.vscode-nvim" },
   -- import/override with your plugins folder
 }
