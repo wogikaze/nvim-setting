@@ -1,6 +1,17 @@
 -------------------------------------------------
 -- キーマッピング（ショートカット）の設定
 -------------------------------------------------
+-- 'json'ファイルタイプに対するオートコマンドグループを作成
+-- local json_group = vim.api.nvim_create_augroup("JsonAutoCmd", { clear = true })
+--
+-- -- 'json'ファイルタイプのバッファに対して<F5>キーのマッピングを設定
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "json",
+--   group = json_group,
+--   callback = function()
+--     vim.api.nvim_buf_set_keymap(0, "n", "<F5>", [[:%!jq '.'<CR>]], { noremap = true, silent = true })
+--   end,
+-- })
 
 -- This file simply bootstraps the installation of Lazy.nvim and then calls other files for execution
 -- This file doesn't necessarily need to be touched, BE CAUTIOUS editing this file and proceed at your own risk.
